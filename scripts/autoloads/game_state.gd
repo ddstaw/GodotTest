@@ -159,7 +159,7 @@ func prev_weapon() -> void:
 func add_weapon(weapon_id: String) -> bool:
 	if weapons.size() >= max_weapon_slots:
 		return false
-	var weapon_data := GameData.WEAPONS.get(weapon_id, {})
+	var weapon_data: Dictionary = GameData.WEAPONS.get(weapon_id, {})
 	weapons.append({"id": weapon_id, "ammo": weapon_data.get("magazine_size", 0)})
 	weapons_changed.emit(weapons)
 	return true
@@ -184,7 +184,7 @@ func reload_weapon(weapon_index: int) -> void:
 	if weapon_index < 0 or weapon_index >= weapons.size():
 		return
 	var weapon_id: String = weapons[weapon_index]["id"]
-	var weapon_data := GameData.WEAPONS.get(weapon_id, {})
+	var weapon_data: Dictionary = GameData.WEAPONS.get(weapon_id, {})
 	weapons[weapon_index]["ammo"] = weapon_data.get("magazine_size", 0)
 	weapons_changed.emit(weapons)
 
@@ -203,7 +203,7 @@ func remove_item(item_id: String, quantity: int = 1) -> bool:
 	return true
 
 func use_item(item_id: String) -> bool:
-	var item_data := GameData.ITEMS.get(item_id, {})
+	var item_data: Dictionary = GameData.ITEMS.get(item_id, {})
 	if item_data.is_empty():
 		return false
 	if not remove_item(item_id):
@@ -223,7 +223,7 @@ func get_upgrade_level(upgrade_id: String) -> int:
 	return upgrades.get(upgrade_id, 0)
 
 func apply_upgrade(upgrade_id: String) -> bool:
-	var upgrade_data := GameData.UPGRADES.get(upgrade_id, {})
+	var upgrade_data: Dictionary = GameData.UPGRADES.get(upgrade_id, {})
 	if upgrade_data.is_empty():
 		return false
 	var current_level := get_upgrade_level(upgrade_id)
