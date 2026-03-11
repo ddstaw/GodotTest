@@ -1,0 +1,375 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch4qt7nrp2mv5"]
+
+[ext_resource type="Script" path="res://scripts/city_ui.gd" id="1_city"]
+
+[node name="City" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_city")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.07, 0.08, 0.07, 1.0)
+
+[node name="Header" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0
+anchor_right = 1.0
+anchor_top = 0.0
+anchor_bottom = 0.12
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CityNameLabel" type="Label" parent="Header"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_right = 0.45
+anchor_top = 0.05
+anchor_bottom = 0.55
+grow_horizontal = 2
+grow_vertical = 2
+text = "Sludge Harbor"
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.3, 0.9, 0.4, 1.0)
+
+[node name="CityDescLabel" type="Label" parent="Header"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_right = 0.55
+anchor_top = 0.55
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+text = "A grimy port city."
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.7, 0.75, 0.7, 1.0)
+
+[node name="StatsRow" type="HBoxContainer" parent="Header"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.56
+anchor_right = 0.99
+anchor_top = 0.1
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+theme_override_constants/separation = 20
+
+[node name="GoldLabel" type="Label" parent="Header/StatsRow"]
+layout_mode = 2
+text = "Gold: 500"
+theme_override_colors/font_color = Color(1.0, 0.85, 0.1, 1.0)
+theme_override_font_sizes/font_size = 16
+
+[node name="HealthLabel" type="Label" parent="Header/StatsRow"]
+layout_mode = 2
+text = "HP: 100/100"
+theme_override_colors/font_color = Color(0.9, 0.3, 0.3, 1.0)
+theme_override_font_sizes/font_size = 16
+
+[node name="CargoLabel" type="Label" parent="Header/StatsRow"]
+layout_mode = 2
+text = "Cargo: 0/50"
+theme_override_font_sizes/font_size = 16
+
+[node name="DayLabel" type="Label" parent="Header/StatsRow"]
+layout_mode = 2
+text = "Day 1"
+theme_override_font_sizes/font_size = 16
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0
+anchor_right = 1.0
+anchor_top = 0.12
+anchor_bottom = 0.92
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Market" type="VBoxContainer" parent="TabContainer"]
+layout_mode = 2
+
+[node name="MarketList" type="ItemList" parent="TabContainer/Market"]
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 220)
+
+[node name="PriceLabel" type="Label" parent="TabContainer/Market"]
+layout_mode = 2
+text = "Select a commodity to trade."
+theme_override_font_sizes/font_size = 13
+
+[node name="QuantityRow" type="HBoxContainer" parent="TabContainer/Market"]
+layout_mode = 2
+
+[node name="QuantityLabel" type="Label" parent="TabContainer/Market/QuantityRow"]
+layout_mode = 2
+text = "Quantity:"
+
+[node name="QuantitySpinBox" type="SpinBox" parent="TabContainer/Market/QuantityRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 0)
+min_value = 1.0
+max_value = 999.0
+value = 1.0
+
+[node name="ActionRow" type="HBoxContainer" parent="TabContainer/Market"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="BuyButton" type="Button" parent="TabContainer/Market/ActionRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 40)
+text = "Buy"
+
+[node name="SellButton" type="Button" parent="TabContainer/Market/ActionRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 40)
+text = "Sell"
+
+[node name="Armory" type="VBoxContainer" parent="TabContainer"]
+layout_mode = 2
+
+[node name="WeaponListLabel" type="Label" parent="TabContainer/Armory"]
+layout_mode = 2
+text = "Your Weapons:"
+theme_override_font_sizes/font_size = 14
+
+[node name="WeaponList" type="ItemList" parent="TabContainer/Armory"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 100)
+
+[node name="BuyListLabel" type="Label" parent="TabContainer/Armory"]
+layout_mode = 2
+text = "Available Weapons:"
+theme_override_font_sizes/font_size = 14
+
+[node name="BuyList" type="ItemList" parent="TabContainer/Armory"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 100)
+
+[node name="ArmoryButtonRow" type="HBoxContainer" parent="TabContainer/Armory"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="BuyButton" type="Button" parent="TabContainer/Armory/ArmoryButtonRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 40)
+text = "Buy Weapon"
+
+[node name="SellButton" type="Button" parent="TabContainer/Armory/ArmoryButtonRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 40)
+text = "Sell Weapon"
+
+[node name="AmmoLabel" type="Label" parent="TabContainer/Armory"]
+layout_mode = 2
+text = "Ammo:"
+theme_override_font_sizes/font_size = 14
+
+[node name="AmmoList" type="ItemList" parent="TabContainer/Armory"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 80)
+
+[node name="AmmoBuyButton" type="Button" parent="TabContainer/Armory"]
+layout_mode = 2
+custom_minimum_size = Vector2(160, 40)
+text = "Buy Ammo Pack"
+
+[node name="Clinic" type="VBoxContainer" parent="TabContainer"]
+layout_mode = 2
+
+[node name="ClinicInfo" type="Label" parent="TabContainer/Clinic"]
+layout_mode = 2
+text = "Dr. Slimefinger's Clinic\n\nHealing costs 1 gold per HP.\nSet the amount and click Heal."
+theme_override_font_sizes/font_size = 15
+
+[node name="HealRow" type="HBoxContainer" parent="TabContainer/Clinic"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HealLabel" type="Label" parent="TabContainer/Clinic/HealRow"]
+layout_mode = 2
+text = "Heal amount:"
+
+[node name="HealSlider" type="HSlider" parent="TabContainer/Clinic/HealRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(200, 0)
+min_value = 1.0
+max_value = 100.0
+value = 20.0
+
+[node name="CostLabel" type="Label" parent="TabContainer/Clinic/HealRow"]
+layout_mode = 2
+text = "Cost: 20g"
+
+[node name="HealButton" type="Button" parent="TabContainer/Clinic"]
+layout_mode = 2
+custom_minimum_size = Vector2(160, 44)
+text = "Heal"
+
+[node name="Inn" type="VBoxContainer" parent="TabContainer"]
+layout_mode = 2
+
+[node name="InnInfo" type="Label" parent="TabContainer/Inn"]
+layout_mode = 2
+text = "The Dripping Tap Inn\n\nRest here to recover HP (costs 20g, advances the day).\nBuy a round and listen to the local gossip (costs 10g)."
+theme_override_font_sizes/font_size = 14
+
+[node name="InnButtonRow" type="HBoxContainer" parent="TabContainer/Inn"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RestButton" type="Button" parent="TabContainer/Inn/InnButtonRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(140, 44)
+text = "Rest (20g)"
+
+[node name="RumoursButton" type="Button" parent="TabContainer/Inn/InnButtonRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(160, 44)
+text = "Buy Rumours (10g)"
+
+[node name="RumourListLabel" type="Label" parent="TabContainer/Inn"]
+layout_mode = 2
+text = "Latest gossip:"
+theme_override_font_sizes/font_size = 13
+
+[node name="RumourList" type="RichTextLabel" parent="TabContainer/Inn"]
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 160)
+bbcode_enabled = true
+text = ""
+
+[node name="Travel" type="VBoxContainer" parent="TabContainer"]
+layout_mode = 2
+
+[node name="TravelInfo" type="Label" parent="TabContainer/Travel"]
+layout_mode = 2
+text = "Choose a destination. You will fight your way through the sewer tunnels to reach it."
+theme_override_font_sizes/font_size = 14
+
+[node name="InfoLabel" type="Label" parent="TabContainer/Travel"]
+layout_mode = 2
+text = ""
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.7, 0.8, 0.7, 1.0)
+
+[node name="CityList" type="ItemList" parent="TabContainer/Travel"]
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 220)
+
+[node name="TravelButton" type="Button" parent="TabContainer/Travel"]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 48)
+text = "Set Off"
+theme_override_font_sizes/font_size = 18
+
+[node name="Inventory" type="VBoxContainer" parent="TabContainer"]
+layout_mode = 2
+
+[node name="InvInfo" type="Label" parent="TabContainer/Inventory"]
+layout_mode = 2
+text = "Items and consumables:"
+theme_override_font_sizes/font_size = 14
+
+[node name="InventoryList" type="ItemList" parent="TabContainer/Inventory"]
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 240)
+
+[node name="InvButtonRow" type="HBoxContainer" parent="TabContainer/Inventory"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="UseButton" type="Button" parent="TabContainer/Inventory/InvButtonRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 40)
+text = "Use"
+
+[node name="DropButton" type="Button" parent="TabContainer/Inventory/InvButtonRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 40)
+text = "Drop"
+
+[node name="Upgrades" type="VBoxContainer" parent="TabContainer"]
+layout_mode = 2
+
+[node name="UpgradeInfo" type="Label" parent="TabContainer/Upgrades"]
+layout_mode = 2
+text = "The Workshop – upgrade your gear."
+theme_override_font_sizes/font_size = 14
+
+[node name="UpgradeList" type="ItemList" parent="TabContainer/Upgrades"]
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 260)
+
+[node name="BuyButton" type="Button" parent="TabContainer/Upgrades"]
+layout_mode = 2
+custom_minimum_size = Vector2(180, 44)
+text = "Buy Upgrade"
+
+[node name="BottomBar" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0
+anchor_right = 1.0
+anchor_top = 0.92
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="SaveButton" type="Button" parent="BottomBar"]
+layout_mode = 2
+custom_minimum_size = Vector2(120, 0)
+text = "Save Game"
+
+[node name="MainMenuButton" type="Button" parent="BottomBar"]
+layout_mode = 2
+custom_minimum_size = Vector2(140, 0)
+text = "Main Menu"
+
+[node name="StatusLabel" type="Label" parent="BottomBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Welcome to the city."
+theme_override_colors/font_color = Color(0.9, 0.85, 0.5, 1.0)
+theme_override_font_sizes/font_size = 14
+
+[connection signal="item_selected" from="TabContainer/Market/MarketList" to="." method="_on_market_list_item_selected"]
+[connection signal="pressed" from="TabContainer/Market/ActionRow/BuyButton" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="TabContainer/Market/ActionRow/SellButton" to="." method="_on_sell_button_pressed"]
+[connection signal="item_selected" from="TabContainer/Armory/WeaponList" to="." method="_on_armory_weapon_list_item_selected"]
+[connection signal="item_selected" from="TabContainer/Armory/BuyList" to="." method="_on_armory_buy_list_item_selected"]
+[connection signal="pressed" from="TabContainer/Armory/ArmoryButtonRow/BuyButton" to="." method="_on_armory_buy_pressed"]
+[connection signal="pressed" from="TabContainer/Armory/ArmoryButtonRow/SellButton" to="." method="_on_armory_sell_pressed"]
+[connection signal="item_selected" from="TabContainer/Armory/AmmoList" to="." method="_on_ammo_list_item_selected"]
+[connection signal="pressed" from="TabContainer/Armory/AmmoBuyButton" to="." method="_on_ammo_buy_pressed"]
+[connection signal="value_changed" from="TabContainer/Clinic/HealRow/HealSlider" to="." method="_on_heal_slider_value_changed"]
+[connection signal="pressed" from="TabContainer/Clinic/HealButton" to="." method="_on_clinic_heal_pressed"]
+[connection signal="pressed" from="TabContainer/Inn/InnButtonRow/RestButton" to="." method="_on_rest_pressed"]
+[connection signal="pressed" from="TabContainer/Inn/InnButtonRow/RumoursButton" to="." method="_on_rumours_pressed"]
+[connection signal="item_selected" from="TabContainer/Travel/CityList" to="." method="_on_city_list_item_selected"]
+[connection signal="pressed" from="TabContainer/Travel/TravelButton" to="." method="_on_travel_pressed"]
+[connection signal="item_selected" from="TabContainer/Inventory/InventoryList" to="." method="_on_inv_list_item_selected"]
+[connection signal="pressed" from="TabContainer/Inventory/InvButtonRow/UseButton" to="." method="_on_inv_use_pressed"]
+[connection signal="pressed" from="TabContainer/Inventory/InvButtonRow/DropButton" to="." method="_on_inv_drop_pressed"]
+[connection signal="item_selected" from="TabContainer/Upgrades/UpgradeList" to="." method="_on_upgrade_list_item_selected"]
+[connection signal="pressed" from="TabContainer/Upgrades/BuyButton" to="." method="_on_upgrade_buy_pressed"]
+[connection signal="pressed" from="BottomBar/SaveButton" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="BottomBar/MainMenuButton" to="." method="_on_main_menu_pressed"]

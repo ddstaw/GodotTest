@@ -1,0 +1,88 @@
+[gd_scene load_steps=2 format=3 uid="uid://dm3p6nt8vq1kw"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_hud"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_hud")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 280.0
+offset_bottom = 180.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 272.0
+offset_bottom = 172.0
+theme_override_constants/separation = 4
+
+[node name="HealthRow" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="HealthIcon" type="Label" parent="Panel/VBoxContainer/HealthRow"]
+layout_mode = 2
+text = "❤"
+theme_override_colors/font_color = Color(0.9, 0.2, 0.2, 1.0)
+
+[node name="HealthBar" type="ProgressBar" parent="Panel/VBoxContainer/HealthRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(120, 20)
+max_value = 100.0
+value = 100.0
+
+[node name="HealthLabel" type="Label" parent="Panel/VBoxContainer/HealthRow"]
+layout_mode = 2
+text = "100 / 100"
+theme_override_font_sizes/font_size = 13
+
+[node name="ArmorLabel" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Armor: 0"
+theme_override_font_sizes/font_size = 13
+
+[node name="GoldLabel" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Gold: 500"
+theme_override_colors/font_color = Color(1.0, 0.85, 0.1, 1.0)
+theme_override_font_sizes/font_size = 14
+
+[node name="WeaponRow" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="WeaponLabel" type="Label" parent="Panel/VBoxContainer/WeaponRow"]
+layout_mode = 2
+text = "Rust Blaster"
+theme_override_colors/font_color = Color(0.7, 0.9, 1.0, 1.0)
+theme_override_font_sizes/font_size = 14
+
+[node name="AmmoLabel" type="Label" parent="Panel/VBoxContainer/WeaponRow"]
+layout_mode = 2
+text = "12 / 12"
+theme_override_font_sizes/font_size = 13
+
+[node name="DayLabel" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Day 1"
+theme_override_font_sizes/font_size = 13
+
+[node name="MessageLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_right = 0.85
+anchor_top = 0.12
+anchor_bottom = 0.22
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+text = ""
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1.0, 0.9, 0.3, 1.0)
+
+[node name="MessageTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

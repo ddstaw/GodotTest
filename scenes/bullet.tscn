@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq9r2mnp5vj3k"]
+
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_bullet"]
+
+[node name="Bullet" type="Area2D"]
+script = ExtResource("1_bullet")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -6.0
+offset_top = -3.0
+offset_right = 6.0
+offset_bottom = 3.0
+color = Color(1.0, 0.9, 0.2, 1.0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = RectangleShape2D.new()
+
+[node name="LifetimeTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = false
+
+[connection signal="timeout" from="LifetimeTimer" to="." method="_on_lifetime_timer_timeout"]
