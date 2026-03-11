@@ -1,0 +1,94 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwqx3hkp4t1l7"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_menu"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_menu")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.06, 0.06, 0.1, 1.0)
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_right = 0.9
+anchor_top = 0.08
+anchor_bottom = 0.22
+grow_horizontal = 2
+grow_vertical = 2
+text = "SEWER TAIPAN"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 64
+theme_override_colors/font_color = Color(0.3, 0.9, 0.4, 1.0)
+
+[node name="SubtitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_right = 0.9
+anchor_top = 0.23
+anchor_bottom = 0.31
+grow_horizontal = 2
+grow_vertical = 2
+text = "Trade. Survive. Blast your way through the sewer underworld."
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.7, 0.8, 0.7, 1.0)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.35
+anchor_right = 0.65
+anchor_top = 0.38
+anchor_bottom = 0.75
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="NewGameButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(280, 52)
+text = "New Game"
+theme_override_font_sizes/font_size = 22
+
+[node name="ContinueButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(280, 52)
+text = "Continue"
+theme_override_font_sizes/font_size = 22
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(280, 52)
+text = "Quit"
+theme_override_font_sizes/font_size = 22
+
+[node name="VersionLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0
+anchor_right = 1.0
+anchor_top = 0.95
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Sewer Taipan v0.1 – Godot 4 Template"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.4, 0.4, 0.4, 1.0)
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]

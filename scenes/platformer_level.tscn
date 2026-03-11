@@ -1,0 +1,119 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfg2xk7rv3mp9"]
+
+[ext_resource type="Script" path="res://scripts/platformer_level.gd" id="1_level"]
+[ext_resource type="Script" path="res://scripts/level_generator.gd" id="2_gen"]
+[ext_resource type="PackedScene" uid="uid://cx7ym4vkp1qr8" path="res://scenes/player.tscn" id="3_player"]
+[ext_resource type="PackedScene" uid="uid://dm3p6nt8vq1kw" path="res://scenes/ui/hud.tscn" id="4_hud"]
+
+[node name="PlatformerLevel" type="Node2D"]
+script = ExtResource("1_level")
+
+[node name="Background" type="ColorRect" parent="."]
+z_index = -10
+position = Vector2(-64.0, -64.0)
+size = Vector2(4096.0, 800.0)
+color = Color(0.05, 0.07, 0.05, 1.0)
+
+[node name="LevelGenerator" type="Node" parent="."]
+script = ExtResource("2_gen")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="LevelGenerator"]
+tile_set = null
+
+[node name="Enemies" type="Node2D" parent="LevelGenerator"]
+
+[node name="Pickups" type="Node2D" parent="LevelGenerator"]
+
+[node name="PlayerSpawn" type="Marker2D" parent="LevelGenerator"]
+position = Vector2(64.0, 448.0)
+
+[node name="ExitArea" type="Area2D" parent="LevelGenerator"]
+position = Vector2(3104.0, 448.0)
+
+[node name="ExitCollision" type="CollisionShape2D" parent="LevelGenerator/ExitArea"]
+shape = RectangleShape2D.new()
+
+[node name="ExitLabel" type="Label" parent="LevelGenerator/ExitArea"]
+offset_left = -30.0
+offset_top = -40.0
+offset_right = 30.0
+offset_bottom = -20.0
+text = "EXIT →"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.3, 1.0, 0.3, 1.0)
+theme_override_font_sizes/font_size = 14
+
+[node name="Player" groups=["player"] parent="." instance=ExtResource("3_player")]
+position = Vector2(64.0, 448.0)
+
+[node name="HUD" parent="." instance=ExtResource("4_hud")]
+
+[node name="DeathScreen" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="DeathPanel" type="Panel" parent="DeathScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_right = 0.7
+anchor_top = 0.3
+anchor_bottom = 0.7
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="DeathScreen/DeathPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+theme_override_constants/separation = 20
+
+[node name="DeathLabel" type="Label" parent="DeathScreen/DeathPanel/VBox"]
+layout_mode = 2
+text = "YOU DIED"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 36
+theme_override_colors/font_color = Color(0.9, 0.2, 0.2, 1.0)
+
+[node name="RetryButton" type="Button" parent="DeathScreen/DeathPanel/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 44)
+text = "Retry Level"
+theme_override_font_sizes/font_size = 18
+
+[node name="MainMenuButton" type="Button" parent="DeathScreen/DeathPanel/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 44)
+text = "Main Menu"
+theme_override_font_sizes/font_size = 18
+
+[node name="LevelCompleteScreen" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="CompletePanel" type="Panel" parent="LevelCompleteScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_right = 0.8
+anchor_top = 0.3
+anchor_bottom = 0.7
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CompleteLabel" type="Label" parent="LevelCompleteScreen/CompletePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "LEVEL COMPLETE!\nArriving at destination..."
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.3, 0.9, 0.4, 1.0)
+
+[connection signal="pressed" from="DeathScreen/DeathPanel/VBox/RetryButton" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="DeathScreen/DeathPanel/VBox/MainMenuButton" to="." method="_on_main_menu_pressed"]
